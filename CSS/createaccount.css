@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f1f2f7;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .create-account-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-account-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FF0000;
+  }
+  
+  #createAccountForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #createAccountForm label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  #createAccountForm input,
+  #createAccountForm select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  #createAccountForm input:focus,
+  #createAccountForm select:focus {
+    outline: none;
+    border-color: #FF0000;
+  }
+
+  #createAccountForm button {
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #FF0000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #createAccountForm button:hover {
+    background-color: #0056b3;
+  }
+  
+  #createAccountForm label[for="togglePassword"] {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #666;
+  }
+  
+  #createAccountForm label[for="togglePassword"] input {
+    margin-right: 5px;
+  }
+  /* Loader styling */
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #FF0000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 2000;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+  
+  @media (max-width: 600px) {
+    .create-account-container {
+      padding: 20px;
+      margin: 20px;
+    }
+  }
+  
