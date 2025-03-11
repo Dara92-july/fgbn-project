@@ -145,6 +145,19 @@
   height: auto;
   margin-bottom: 20px;
 }
+.password-container {
+  position: relative;
+  margin-bottom: 20px;
+    width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
 /* From Uiverse.io by Nawsome */ 
 .socket {

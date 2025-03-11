@@ -87,6 +87,8 @@ const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
 const cancelButton = document.getElementById('cancelButton');
 const signInSubmit = document.getElementById('signInSubmit');
+const eyeIcon = document.getElementById('eyeIcon');
+const eyeSlashIcon = document.getElementById('eyeSlashIcon');
 
 // Show the sign-in form on button click
 signInButton.addEventListener('click', () => {
@@ -99,9 +101,21 @@ cancelButton.addEventListener('click', () => {
 });
 
 // Toggle password visibility
-togglePassword.addEventListener('change', () => {
-  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-  passwordInput.setAttribute('type', type);
+togglePassword.addEventListener('click', () => {
+  const isPasswordHidden = passwordInput.getAttribute('type') === 'password';
+
+  if (isPasswordHidden) {
+    passwordInput.setAttribute('type', 'text');
+    eyeIcon.style.display = 'none';
+    eyeSlashIcon.style.display = 'inline';
+  } else {
+    passwordInput.setAttribute('type', 'password');
+    eyeIcon.style.display = 'inline';
+    eyeSlashIcon.style.display = 'none';
+  }
+
+  console.log('Password input type:', passwordInput.getAttribute('type'));
+  console.log(isPasswordHidden ? 'Password is hidden, showing eye icon' : 'Password is visible, showing eye-slash icon');
 });
 
 // Sign in with Firebase Authentication and check Firestore for user profile
@@ -125,7 +139,7 @@ signInSubmit.addEventListener('click', async (e) => {
       sessionStorage.setItem('userData', JSON.stringify(userData));
 
       // Redirect to the landing page after a successful login
-      window.location.href = 'landing.html';
+      window.location.href = '../landing.html';
     } else {
       console.error('No such user in Firestore');
       showPopup('No user data found');

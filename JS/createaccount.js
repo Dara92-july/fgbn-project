@@ -1,7 +1,17 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js"; 
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js"; 
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  sendEmailVerification 
+} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc 
+} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+import { 
+  getAnalytics 
+} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBhAicyUZ7HR3OeQpvFpwvfbrapjFrk6tE",
@@ -36,7 +46,7 @@ function showPopup(message) {
     popupContainer.style.zIndex = "1000";
     document.body.appendChild(popupContainer);
   }
-  
+
   const popupBox = document.createElement("div");
   popupBox.style.backgroundColor = "#fff";
   popupBox.style.padding = "20px";
@@ -45,14 +55,14 @@ function showPopup(message) {
   popupBox.style.minWidth = "300px";
   popupBox.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
   popupBox.innerHTML = `<p>${message}</p><button id="popupOkButton">OK</button>`;
-  
+
   popupContainer.innerHTML = "";
   popupContainer.appendChild(popupBox);
-  
+
   document.getElementById("popupOkButton").addEventListener("click", () => {
     popupContainer.style.display = "none";
   });
-  
+
   popupContainer.style.display = "flex";
 }
 
@@ -60,76 +70,93 @@ function showPopup(message) {
 const createAccountForm = document.getElementById('createAccountForm');
 const backButton = document.getElementById('backButton');
 const loader = document.getElementById('loader');
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+const eyeIcon = document.getElementById('eyeIcon');
+const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+const loaderContainer = document.getElementById("loader-container");
 
 // Navigate back to sign-in page when the back button is clicked
 backButton.addEventListener('click', () => {
   window.location.href = 'signin.html';
 });
 
-createAccountForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  
-  // Show loader while processing the account creation
-  loader.style.display = 'block';
+// Toggle password visibility
+togglePassword.addEventListener('click', () => {
+  const isPasswordHidden = passwordInput.getAttribute('type') === 'password';
 
-  const firstName = document.getElementById('firstName').value.trim();
-  const lastName = document.getElementById('lastName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const dob = document.getElementById('dob').value;
-  const phone = document.getElementById('phone').value.trim();
-  const accountType = document.getElementById('accountType').value;
-
-  try {
-    // Create user with Firebase Authentication
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    // Generate a random account number
-    const accountNumber = 'ACCT-' + (Math.floor(Math.random() * 90000) + 10000);
-
-    // Save user details in Firestore (including uid)
-    await setDoc(doc(db, 'users', user.uid), {
-      firstName,
-      lastName,
-      email,
-      dob,
-      phone,
-      accountType,
-      accountNumber,
-      balance: 0,
-      uid: user.uid
-    });
-
-    // Create a newUserData object and store it in sessionStorage
-    const newUserData = { 
-      firstName, 
-      lastName, 
-      email, 
-      dob, 
-      phone, 
-      accountType, 
-      accountNumber, 
-      balance: 0, 
-      uid: user.uid 
-    };
-    sessionStorage.setItem('userData', JSON.stringify(newUserData));
-
-    // Simulate a short delay (optional) for the loader to be visible
-    setTimeout(() => {
-      window.location.href = 'landing.html';
-    }, 1500); // 1.5 seconds delay
-  } catch (error) {
-    console.error('Error creating account:', error);
-    showPopup('Error creating account: ' + error.message);
-    loader.style.display = 'none';
+  if (isPasswordHidden) {
+    passwordInput.setAttribute('type', 'text');
+    eyeIcon.style.display = 'none';
+    eyeSlashIcon.style.display = 'inline';
+  } else {
+    passwordInput.setAttribute('type', 'password');
+    eyeIcon.style.display = 'inline';
+    eyeSlashIcon.style.display = 'none';
   }
+
+  console.log('Password input type:', passwordInput.getAttribute('type'));
+  console.log(isPasswordHidden ? 'Password is hidden, showing eye icon' : 'Password is visible, showing eye-slash icon');
 });
 
-// Toggle password visibility
-const togglePassword = document.getElementById('togglePassword');
-const passwordField = document.getElementById('password');
+createAccountForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  loaderContainer.style.display = 'block';
 
-togglePassword.addEventListener('change', () => {
-  passwordField.type = togglePassword.checked ? 'text' : 'password';
+  // Collect form data
+  const formData = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName: document.getElementById('lastName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value,
+    dob: document.getElementById('dob').value,
+    phone: document.getElementById('phone').value.trim(),
+    accountType: document.getElementById('accountType').value
+  };
+
+  try {
+    // Create user and send verification email
+    const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+    const user = userCredential.user;
+    await sendEmailVerification(user);
+    
+    showPopup('Verification email sent. Please check your inbox.');
+
+    // Start verification polling
+    const verificationCheckInterval = setInterval(async () => {
+      try {
+        console.log("Checking email verification status...");
+        await user.reload();
+        console.log("Current verification status:", user.emailVerified);
+
+        if (user.emailVerified) {
+          clearInterval(verificationCheckInterval);
+          console.log("Email verified! Saving user data...");
+
+          // Save to Firestore
+          await setDoc(doc(db, 'users', user.uid), {
+            ...formData,
+            accountNumber: 'ACCT-' + (Math.floor(Math.random() * 90000) + 10000),
+            balance: 0,
+            uid: user.uid
+          });
+
+          // Update UI and redirect
+          loaderContainer.style.display = 'none';
+          sessionStorage.setItem('userData', JSON.stringify({ ...formData, uid: user.uid }));
+          window.location.href = '../landing.html';
+        }
+      } catch (error) {
+        console.error("Verification check failed:", error);
+        clearInterval(verificationCheckInterval);
+        loaderContainer.style.display = 'none';
+        showPopup(`Error: ${error.message}`);
+      }
+    }, 5000);
+
+  } catch (error) {
+    console.error("Account creation failed:", error);
+    loaderContainer.style.display = 'none';
+    showPopup(`Error: ${error.message}`);
+  }
 });

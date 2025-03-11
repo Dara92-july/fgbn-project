@@ -10,7 +10,7 @@
    <!-- Splash Screen -->
   <div id="splash-screen">
     <div class="logo">
-      <img src="./iconimages/white logo.jpeg" alt="">
+      <img src="../iconimages/white logo.jpeg" alt="">
     </div>
 		<div class="socket">
 			<div class="gel center-gel">
@@ -205,35 +205,34 @@
 	
   </div>
 
-  <!-- Main Content -->
-  <div id="main-content" style="display: none;">
-  <div class="container">
-    <div class="logo">
-      <img src="./iconimages/white logo.jpeg" alt="" style="height: 150px;width: 150px;">
+   <!-- Main Content -->
+   <div id="main-content" style="display: none;">
+    <div class="container">
+      <div class="logo">
+        <img src="../iconimages/white logo.jpeg" alt="" style="height: 150px;width: 150px;">
+      </div>
+      <div class="sincre">
+        <button class="sign-in-btn" id="signInButton">Sign In</button>
+        <p>Don't have an account? <a href="privacy.html" class="account">Create account</a></p>
+      </div>
     </div>
-    <div class="sincre">
-    <button class="sign-in-btn" id="signInButton">Sign In</button>
-    <p>Dont have account?<a href="createaccount.html" class="account">Create account</a></p>
-    </div>
-  </div>
 
-  <div class="sign-in-page" id="signInPage">
-    <button class="cancel-btn" id="cancelButton">&times;</button>
-    <div class="form-group">
-      <input type="email" placeholder="Email" id="email" required>
+    <div class="sign-in-page" id="signInPage">
+      <button class="cancel-btn" id="cancelButton">&times;</button>
+      <div class="form-group">
+        <input type="email" placeholder="Email" id="email" required>
+      </div>
+      <div class="form-group password-container">
+        <input type="password" placeholder="Password" id="password" required>
+        <span class="toggle-password" id="togglePassword">
+          <img id="eyeIcon" src="../iconimages/iconamoon--eye-thin.svg" alt="" style="display: inline;">
+          <img id="eyeSlashIcon" src="../iconimages/mynaui--eye-slash.svg" alt="" style="display: none;">
+        </span>
+      </div>
+      <button class="sign-in-btn" id="signInSubmit">Sign In</button>
+      <button class="google-btn" id="googleButton">Google</button>
+      <a href="./forgot.html" class="forgot-password">Forgot Password?</a>
     </div>
-    <div class="form-group">
-      <input type="password" placeholder="Password" id="password" required>
-    </div>
-    <div class="password-toggle">
-      <input type="checkbox" id="togglePassword">
-      <label for="togglePassword">Show Password</label>
-    </div>
-    <!-- Added an ID for the sign in button within the form -->
-    <button class="sign-in-btn" id="signInSubmit">Sign In</button>
-    <button class="google-btn" id="googleButton">Google</button>
-    <a href="forgot.html" class="forgot-password">Forgot Password?</a>
-  </div>
   </div>
   <script type="module" src="../JS/signin.js"></script>
 </body>
