@@ -1,0 +1,212 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+.more{
+    background-color: #fdfbfd;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 8d0px;
+    justify-content: space-between;
+    display: flex;
+    padding: 4vw;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 0px 2px 4px rgba(3, 3, 3, 0.951); 
+}
+
+.all-list{
+    position: relative;
+    top: 20px;
+}
+
+
+.all-list .list h3{
+    border-bottom: 1px solid rgb(222, 215, 215);
+    width: 150vw;
+    padding: 3px;
+    font-size: 5vw;
+}
+
+.list{
+    padding: 3.5vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list img{
+    position: relative;
+    bottom: 5px;
+}
+
+
+
+
+.set{
+    display: none;
+}
+
+.settings{
+        background-color: #fdfbfd;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+        justify-content: space-between;
+        display: flex;
+        padding: 4vw;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        box-shadow: 0px 2px 4px rgba(3, 3, 3, 0.951); 
+}
+
+.second-alllist{
+        position: relative;
+        top: 20px;    
+}
+
+.llist a h3{
+    color: red;
+}
+
+.second-alllist .llist h3{
+    border-bottom: 1px solid rgb(222, 215, 215);
+    width: 150vw;
+    padding: 3px;
+    font-size: 5vw;
+}
+
+.llist{
+    padding: 3.5vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.llist img{
+    position: relative;
+    bottom: 5px;
+}
+
+.bu{
+    display: none;
+}
+
+
+.bu img{
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+button{
+    position: relative;
+    top: 80vw;
+    left: 30vw;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: white;
+    border: 1px solid gray;
+    width: 35vw;
+    height: 7vh;
+    border-radius: 30px;
+}
+
+.la{
+    position: relative;
+    top: 10vw;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 7vw;
+    right: 5vw;
+}
+
+#update-limit{
+    top: 20vw;
+    margin-right: 30vw;
+    right: 10vw;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: green;
+    color: white;
+    font-weight: bold;
+    font-size: 4vw;
+}
+
+/* Center the "Sign Out" text and buttons */
+#log {
+    cursor: pointer;
+    text-align: center; /* Center the text horizontally */
+    color: red; /* Red text color */
+    text-decoration: underline; /* Underline the text */
+    font-size: 16px; /* Adjust font size as needed */
+    margin: 0 auto; /* Center the text block */
+    display: block; /* Ensure it takes full width */
+    width: 100%; /* Full width for centering */
+}
+
+/* Style for the confirmation buttons container */
+.out {
+    display: none; /* Hidden by default */
+    flex-direction: row; /* Align buttons horizontally */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px; /* Space between "Sign Out" and buttons */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+/* Style for the buttons */
+.out button {
+    padding: 8px 20px; /* Slightly larger padding for better appearance */
+    font-size: 14px; /* Smaller font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333; /* Dark text color */
+    transition: background-color 0.3s ease;
+}
+
+.out button:hover {
+    background-color: #ddd; /* Slightly darker on hover */
+}
+
+/* Light mode styles (default) */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+
+.dark-mode .for-all {
+    background-color: #1e1e1e;
+    color: black;
+}
+
+.dark-mode .list, .dark-mode .llist {
+    position: relative;
+    bottom: 10px;
+    color: #ffffff;
+}
+
+.dark-mode button {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode img#img {
+    filter: invert(1); /* Invert the icon color for dark mode */
+}
