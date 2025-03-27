@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return greetings[randomIndex];
         };
 
-        welcomeMessage.textContent = `${getRandomGreeting()}, ${userData.firstName} ${userData.lastName}`;
+        welcomeMessage.textContent = `${getRandomGreeting()}, ${userData.firstName}`;
         accountTypeElement.textContent = userData.accountType;
         balanceElement.textContent = `NGN ${userData.balance}`;
 

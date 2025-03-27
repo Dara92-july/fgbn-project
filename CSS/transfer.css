@@ -1,8 +1,13 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+  }
+  .plus-jakarta-sans-uniquifier {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
   }
   .modal {
     display: none;
