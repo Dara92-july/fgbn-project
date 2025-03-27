@@ -7,7 +7,7 @@
 body, html {
   height: 100%;
   width: 100%;
-  font-family: Arial, sans-serif;
+  font-size: 20px;
   background-color: whitesmoke;
 }
 .header {
@@ -25,13 +25,19 @@ body, html {
   height: 50vh;
   z-index: 1000;
 }
-
+.plus-jakarta-sans-uniquifier {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
 .welcome {
   display: flex;
   align-items: center;
   gap: 19em;
   padding: 10px;
   margin-bottom: 50px;
+  font-size: 20px;
 }
 
 #welcomeMessage {
@@ -644,7 +650,7 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    gap: 15px;
     padding: 10px;
   }
 
@@ -679,8 +685,6 @@ body, html {
     width: 95%;
   }
 
-  .footer {
-  }
 }
 
 

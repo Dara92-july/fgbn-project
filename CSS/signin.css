@@ -9,10 +9,14 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
   background-color: #ffffff;
 }
-
+.plus-jakarta-sans-uniquifier {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
 .container {
   position: relative;
   display: flex;
@@ -498,33 +502,42 @@ body, html {
     background: #ee3030;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 430px) {
   .container {
-    padding: 20px;
+    padding: 15px;
     width: 100%;
+    height: 100vh;
   }
 
   .sign-in-btn, .google-btn {
-    padding: 10px 50px;
-    font-size: 16px;
+    padding: 12px 60px;
+    font-size: 17px;
   }
 
   .form-group input {
-    padding: 10px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 15px;
   }
 
   .forgot-password {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .sign-in-page {
-    padding: 30px 15px;
+    height: 50%;
+    padding: 35px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .sign-in-page.show {
+    transform: translateY(0); /* Move it fully to the top */
   }
 
   .toggle-password {
-    right: 5px;
+    right: 7px;
   }
+
 }
 
 @media (min-width: 768px) {
