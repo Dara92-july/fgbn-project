@@ -5,12 +5,17 @@
   }
   
   body {
-    font-family: Arial, sans-serif;
     background: #f1f2f7;
     color: #333;
     line-height: 1.6;
   }
   
+.plus-jakarta-sans-uniquifier {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
   .create-account-container {
     width: 90%;
     max-width: 500px;
