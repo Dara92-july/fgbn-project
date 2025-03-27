@@ -1,0 +1,62 @@
+.profile-container{
+    width: 80%;
+    margin: 40px auto;
+  text-align: center;
+    
+}
+
+   .profile-picture{
+    width: 200px;
+    height: 200px;
+    border-radius: 50% ;
+    margin: 20px auto;
+    border: 2px solid black;
+    overflow: hidden;
+} 
+#profile-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.camera-icon{
+    position: absolute;
+    top: 25%;
+    left: 52%;
+    transform: translate( -50% , -50%);
+    border-radius: 40%;
+    cursor: pointer;
+
+}
+#image-input{
+    display: none;
+}
+.camera-container{
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 3%;
+    width: 100%;
+   height: 45%;
+   background-color: white; 
+   /* display: flex; */
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+#camera-video{
+    width: 80%;
+    height: 80%;
+    border-radius: 40px;
+}
+#capture-button{
+   position: absolute;
+   align-items: center;
+   justify-content: center;
+    bottom: 35px;
+    background-color: white;
+    /* color: white; */
+    border: none;
+    border-radius: 20px;
+    padding: 20px 20px;
+     cursor: pointer;
+}
