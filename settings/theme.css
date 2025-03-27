@@ -5,26 +5,15 @@ body {
 
 body.dark-mode {
     background-color: #121212;
-    color: #ffffff;
-}
-
-
-/* .dark-mode .for-all {
-    background-color: #1e1e1e;
     color: black;
 }
 
-.dark-mode .list, .dark-mode .llist {
-    position: relative;
-    bottom: 10px;
-    color: #ffffff;
+.dark-mode .dashboard-content1, .dark-mode .dashboard-content2, .dark-mode .dashboard-content3,
+.dark-mode .dashboard-content4, .dark-mode .dashboard-content5, .dark-mode .dashboard-content6, .dark-mode .account-info{
+    background: black;
+    color: white;
 }
 
-.dark-mode button {
-    background-color: #333;
-    color: #fff;
+.dark-mode .landing-container2{
+    background: black;
 }
-
-.dark-mode img#img {
-    filter: invert(1);
-} */
