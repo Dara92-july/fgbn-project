@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="./settings/theme.css">
+  <link rel="stylesheet" href="./settings/theme.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="./CSS/landing.css">
+  <script defer type="module" src="./JS/landing.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="welcome">
+    <h1 id="welcomeMessage"></h1>
+    <img src="./iconimages/gg--profile - white.svg" alt="" id="accountHolderName"></div>
+    <div class="landing-container1">
+      <div class="account-info">
+        <div class="acctype">
+          <p>Account Type: </p> 
+          <p><span id="accountType">Type</span></p>
+        </div>
+        <div class="balance">
+          <div class="balance1">
+            Balance: 
+            <span id="balance">0</span>
+          </div>
+          <div class="toggle">
+            <button id="toggleBalance" class="toggle-balance-btn">
+            <img id="toggleBalanceIcon" src="./iconimages/iconamoon--eye-thin.svg" alt="Hide Balance">
+            </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="landing-container2">
+    <div class="dashboard-content1">
+      <h2>Services</h2>
+      <div class="service-list">
+      <div class="add-money">
+        <div class="addimg"><a href="#"><img src="./iconimages/tabler--plus.svg" alt=""></a></div>
+        <p>Deposit</p>
+        </div>
+        
+      <div class="transfer">
+        <div class="addimg"><a href="./HTML/transfer.html"><img src="./iconimages/arcticons--smart-transfer.svg" alt=""></a></div>
+        <p>Transfer</p>
+      </div>
+      <div class="transaction-history">
+        <div class="addimg"><a href="./HTML/transactionhistory.html"><img src="./iconimages/material-symbols-light--history-rounded.svg" alt=""></a></div>
+          <p>History</p>
+      </div>
+      <div class="tv-sub">
+        <div class="addimg"><a href="#"><img src="./iconimages/material-symbols-light--tv-outline.svg" alt=""></a></div>
+          <p>TVSubscription</p>
+      </div>
+      <div class="data">
+          <div class="addimg"><a href="#"><img src="./iconimages/iconoir--wifi-tag.svg" alt=""></a></div>
+          <p>Data</p>
+      </div>
+      <div class="airtime">
+        <div class="addimg"><a href="#"><img src="./iconimages/dashicons--admin-customizer.svg" alt=""></a></div>
+          <p>Airtime</p>
+      </div>
+      </div>
+      </div>
+    <div class="dashboard-content2">
+      <h2>Loans</h2>
+      <img src="./iconimages/pexels-thirdman-5060813.jpg" alt="" style="height: 90px; width: 120px;">
+      <p>Quick Loans</p>
+    </div>
+    <div class="dashboard-content3">
+      <img src="./iconimages/e naira.jpeg" alt="" style="height: 70px; width: 100px;">
+      <h5>Access your eNaira Wallet from FGBN App</h5>
+      <p>secure fast & easy way to deposit & withdraw funds/ from your FGBN app</p>
+      <div class="start">
+      <button class="get-started-btn" id="getSubmit">Get Started</button></div>
+    </div>
+    <div class="dashboard-content4">
+      <div class="bill">
+        <h3>My Bills</h3>
+        <img src="./iconimages/pajamas--long-arrow.svg" alt="">
+      </div>
+      <div class="saved">
+        <p>No Bills saved</p>
+      </div>
+    </div>
+    <div class="dashboard-content5">
+      <h2>Mobile Top up</h2>
+      <p>Customer Mobile Number</p>
+      <input type="number" placeholder="phone Number" id="phone" required>
+      <input type="text" placeholder="Select Account" id="account" required>
+      <input type="text" placeholder="Select Service" id="service" required>
+      <button class="continue" id="continueButton">Continue</button>
+      
+    </div>
+    <div class="dashboard-content6">
+      <p>Customize Your <br> Home</p>
+      <div class="edit"><img src="./iconimages/dashicons--admin-customizer - Copy.svg" alt=""></div>
+      <div class="plus">
+        <img src="./iconimages/tabler--plus - Copy.svg" alt="">
+      </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="home">
+      <i class="fa-solid fa-house"></i>
+      <p>Home</p>
+    </div>
+    <div class="more">
+      <i class="fa-solid fa-bars"></i>
+      <p>More</p>
+    </div>
+  </footer>
+  
+  <!-- Deposit Modal -->
+<div id="depositModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span id="modalClose" class="modal-close">&times;</span>
+    <h2>Deposit Money</h2>
+    <input type="number" id="depositAmount" placeholder="Enter deposit amount" />
+    <div class="modal-buttons">
+      <button id="depositSubmit" class="modal-btn">Deposit</button>
+      <button id="depositCancel" class="modal-btn cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+<div id="loader-container" class="loader-container">
+  <div class="socket">
+    <div class="socket">
+      <div class="gel center-gel">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c1 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c2 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c3 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c4 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c5 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c6 r1">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      
+      <div class="gel c7 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      
+      <div class="gel c8 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c9 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c10 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c11 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c12 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c13 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c14 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c15 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c16 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c17 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c18 r2">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c19 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c20 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c21 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c22 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c23 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c24 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c25 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c26 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c28 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c29 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c30 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c31 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c32 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c33 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c34 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c35 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c36 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      <div class="gel c37 r3">
+        <div class="hex-brick h1"></div>
+        <div class="hex-brick h2"></div>
+        <div class="hex-brick h3"></div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</body>
+</html>
