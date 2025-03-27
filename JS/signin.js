@@ -15,19 +15,14 @@ const firebaseConfig = {
   measurementId: "G-VYL14PLCQG"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore();
 
-// script.js
-
 window.addEventListener('load', () => {
-  // Set the duration of the splash screen (e.g., 3 seconds)
   const splashDuration = 3000;
 
-  // Hide the splash screen and show the main content after the duration
   setTimeout(() => {
     document.getElementById('splash-screen').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
@@ -39,7 +34,7 @@ window.addEventListener('load', () => {
  * @param {string} message - The message to display in the pop-up.
  */
 function showPopup(message) {
-  // Check if a popup container already exists; if not, create one.
+
   let popupContainer = document.getElementById("popupContainer");
   if (!popupContainer) {
     popupContainer = document.createElement("div");
@@ -57,7 +52,6 @@ function showPopup(message) {
     document.body.appendChild(popupContainer);
   }
   
-  // Create the pop-up box with the message and OK button.
   const popupBox = document.createElement("div");
   popupBox.style.backgroundColor = "#fff";
   popupBox.style.padding = "20px";
@@ -67,16 +61,14 @@ function showPopup(message) {
   popupBox.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
   popupBox.innerHTML = `<p>${message}</p><button id="popupOkButton">OK</button>`;
   
-  // Clear any previous content and display the new pop-up.
   popupContainer.innerHTML = "";
   popupContainer.appendChild(popupBox);
   
-  // Attach an event listener to the OK button to hide the pop-up.
+  
   document.getElementById("popupOkButton").addEventListener("click", () => {
     popupContainer.style.display = "none";
   });
   
-  // Make sure the container is visible.
   popupContainer.style.display = "flex";
 }
 
@@ -90,17 +82,14 @@ const signInSubmit = document.getElementById('signInSubmit');
 const eyeIcon = document.getElementById('eyeIcon');
 const eyeSlashIcon = document.getElementById('eyeSlashIcon');
 
-// Show the sign-in form on button click
 signInButton.addEventListener('click', () => {
   signInPage.classList.add('show');
 });
 
-// Hide the sign-in form on cancel (X) button click
 cancelButton.addEventListener('click', () => {
   signInPage.classList.remove('show');
 });
 
-// Toggle password visibility
 togglePassword.addEventListener('click', () => {
   const isPasswordHidden = passwordInput.getAttribute('type') === 'password';
 
@@ -118,19 +107,17 @@ togglePassword.addEventListener('click', () => {
   console.log(isPasswordHidden ? 'Password is hidden, showing eye icon' : 'Password is visible, showing eye-slash icon');
 });
 
-// Sign in with Firebase Authentication and check Firestore for user profile
 signInSubmit.addEventListener('click', async (e) => {
   e.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
   try {
-    // Sign in the user
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
     // Check Firestore for the user data
-    const userDocRef = doc(db, "users", user.uid);  // Assuming your user data is stored in a collection named "users"
+    const userDocRef = doc(db, "users", user.uid);
     const userDoc = await getDoc(userDocRef);
     
     if (userDoc.exists()) {
@@ -138,7 +125,6 @@ signInSubmit.addEventListener('click', async (e) => {
       // Save the user data in session storage
       sessionStorage.setItem('userData', JSON.stringify(userData));
 
-      // Redirect to the landing page after a successful login
       window.location.href = '../landing.html';
     } else {
       console.error('No such user in Firestore');

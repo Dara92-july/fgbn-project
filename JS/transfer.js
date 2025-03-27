@@ -36,9 +36,16 @@ const loaderContainer = document.getElementById("loader-container");
 const recipientDetails = document.getElementById("recipientDetails");
 const recipientProfilePic = document.getElementById("recipientProfilePic");
 const recipientName = document.getElementById("recipientName");
+const securityCodeModal = document.getElementById("securityCodeModal");
+// const closeModal = document.getElementById("closeModal");
+const securityCodeInput = document.getElementById("securityCodeInput");
+const submitSecurityCode = document.getElementById("submitSecurityCode");
+const closeTransferPage = document.getElementById("closeTransferPage"); // Close button element
 
+closeTransferPage.addEventListener("click", () => {
+  window.location.href = "../landing.html"; // Redirect to the landing page
+});
 
-// Function to show toast messages
 function showToast(message, isSuccess) {
   const toast = document.createElement("div");
   toast.className = `toast ${isSuccess ? "success" : "error"}`;
@@ -48,13 +55,24 @@ function showToast(message, isSuccess) {
   setTimeout(() => {
     toast.remove();
     if (isSuccess) {
-      // Redirect to landing page after successful transfer
       window.location.href = "../landing.html";
     }
   }, 3000);
 }
 
-// Fetch recipient details when account number changes
+
+function openSecurityCodeModal() {
+  securityCodeModal.style.display = "block";
+}
+
+function closeSecurityCodeModal() {
+  securityCodeModal.style.display = "none";
+  securityCodeInput.value = ""; // Clear input
+}
+
+closeModal.addEventListener("click", closeSecurityCodeModal);
+
+// Fetch recipient details on account number input
 recipientInput.addEventListener("blur", async () => {
   const accountNumber = recipientInput.value.trim();
   if (!accountNumber) {
@@ -81,17 +99,13 @@ recipientInput.addEventListener("blur", async () => {
     recipientProfilePic.src = recipientData.profilePicture || "default-avatar.jpg";
     recipientDetails.style.display = "flex";
   } catch (error) {
-    console.error("Recipient fetch error:", error);
+    console.error("Error fetching recipient:", error);
     showToast("Error fetching recipient details", false);
   } finally {
     loaderContainer.style.display = "none";
   }
 });
 
-// Clear recipient details when input changes
-recipientInput.addEventListener("input", () => {
-  recipientDetails.style.display = "none";
-});
 // Handle form submission
 transferForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -105,19 +119,13 @@ transferForm.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Show loader
-  loaderContainer.style.display = "flex";
-
-  // Get the current logged-in user
   const user = auth.currentUser;
-
   if (!user) {
     showToast("You must be logged in to perform a transfer.", false);
-    loaderContainer.style.display = "none"; // Hide loader
     return;
   }
 
-  const senderUserId = user.uid; // Dynamically fetch the sender's user ID
+  const senderUserId = user.uid; // Get sender's user ID
 
   try {
     // Fetch sender's data from Firestore
@@ -126,11 +134,17 @@ transferForm.addEventListener("submit", async (e) => {
 
     if (!senderSnapshot.exists()) {
       showToast("Sender account not found.", false);
-      loaderContainer.style.display = "none"; // Hide loader
       return;
     }
 
     const senderData = senderSnapshot.data();
+
+    // Check if the transfer amount exceeds the user's transfer limit
+    const transferLimit = senderData.transferLimit || 10000;
+    if (amount > transferLimit) {
+      showToast(`Transaction exceeds your transfer limit of ${transferLimit}.`, false);
+      return;
+    }
 
     // Fetch recipient's data from Firestore using account number
     const recipientQuery = query(
@@ -141,7 +155,6 @@ transferForm.addEventListener("submit", async (e) => {
 
     if (recipientSnapshot.empty) {
       showToast("Recipient account not found.", false);
-      loaderContainer.style.display = "none"; // Hide loader
       return;
     }
 
@@ -151,42 +164,58 @@ transferForm.addEventListener("submit", async (e) => {
     // Check if sender has sufficient balance
     if (senderData.balance < amount) {
       showToast("Insufficient balance.", false);
-      loaderContainer.style.display = "none"; // Hide loader
       return;
     }
 
-    // Perform the transfer
-    const newSenderBalance = senderData.balance - amount;
-    const newRecipientBalance = recipientData.balance + amount;
+    // Open the security code modal
+    openSecurityCodeModal();
 
-    // Update sender's balance
-    await updateDoc(senderRef, { balance: newSenderBalance });
+    submitSecurityCode.addEventListener("click", async () => {
+      const enteredCode = securityCodeInput.value.trim();
 
-    // Update recipient's balance
-    const recipientRef = doc(db, "users", recipientUserId);
-    await updateDoc(recipientRef, { balance: newRecipientBalance });
+      if (!enteredCode || enteredCode.length !== 4) {
+        showToast("Please enter a valid 4-digit security code.", false);
+        return;
+      }
 
-    const transactionData = {
-      senderId: senderUserId,
-      recipientId: recipientUserId,
-      amount: amount,
-      timestamp: new Date(),
-      senderAccount: senderData.accountNumber,
-      recipientAccount: recipientAccountNumber,
-      status: "completed"
-    };
-    
-    await addDoc(collection(db, "transactions"), transactionData);
+      // Validate the security code
+      if (enteredCode !== senderData.securityCode) {
+        showToast("Incorrect security code. Please try again.", false);
+        return;
+      }
 
-    // Hide loader and show success toast
-    loaderContainer.style.display = "none";
-    showToast("Transfer successful!", true);
+      loaderContainer.style.display = "flex"; // Show loader
+      closeSecurityCodeModal(); // Close modal
 
-    // Clear form
-    transferForm.reset();
+      // Perform the transfer
+      const newSenderBalance = senderData.balance - amount;
+      const newRecipientBalance = recipientData.balance + amount;
+
+      // Update balances in Firestore
+      await updateDoc(senderRef, { balance: newSenderBalance });
+      const recipientRef = doc(db, "users", recipientUserId);
+      await updateDoc(recipientRef, { balance: newRecipientBalance });
+
+      // Log the transaction
+      const transactionData = {
+        senderId: senderUserId,
+        recipientId: recipientUserId,
+        amount: amount,
+        timestamp: new Date(),
+        senderAccount: senderData.accountNumber,
+        recipientAccount: recipientAccountNumber,
+        status: "completed"
+      };
+      await addDoc(collection(db, "transactions"), transactionData);
+
+      loaderContainer.style.display = "none"; // Hide loader
+      showToast("Transfer successful!", true);
+
+      transferForm.reset(); // Clear form
+    });
   } catch (error) {
     console.error("Error during transfer:", error);
-    loaderContainer.style.display = "none"; // Hide loader
+    loaderContainer.style.display = "none";
     showToast("An error occurred. Please try again.", false);
   }
 });

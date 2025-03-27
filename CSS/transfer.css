@@ -4,6 +4,32 @@ body {
     padding: 0;
     background-color: #f4f4f4;
   }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+  }
   
   header {
     background-color: white;
@@ -384,9 +410,20 @@ body {
       background: #ee3030;
     }
   }
+  .close-button {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(187, 169, 169);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1000;
+  }
+  
   
   .loader-container {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -405,25 +442,27 @@ body {
     z-index: 1000;
   }
   
-  .toast {
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    color: white;
-    background-color: #333;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
-  .toast.success {
-    background-color: #4CAF50;
-  }
-  
-  .toast.error {
-    background-color: #f44336;
-  }
+  /* Toast Notification Styles */
+.toast {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  min-width: 200px;
+  text-align: center;
+}
 
-/* Ensure form layout is clear and buttons are visible */
+.success {
+  background-color: #ff0000;
+}
+
+.error {
+  background-color: lightcoral;
+}
 form {
   margin-top: 20px;
 }

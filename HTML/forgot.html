@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forgot Password</title>
-  <!-- Include your Firebase script here -->
+  <link rel="stylesheet" href="../CSS/forgot.css">
   <script type="module" src="path/to/your/firebase-config.js"></script>
 </head>
 <body>
-  <img src="../landing.html" alt="">
-  <h2>Forgot Password</h2>
-  <input type="email" id="email" placeholder="Enter your registered email" required>
-  <button id="resetPasswordButton" onclick="resetPassword()">Reset Password</button>
+  <div class="forgotcon">
+   <div class="forgot">
+      <h2>Forgot Password</h2>
+      <input type="email" id="email" placeholder="Enter your registered email" required>
+     <button class="reset" id="resetPasswordButton" onclick="resetPassword()">Reset Password</button>
+    </div>
+  </div>
+  <button id="closeButton" style="position: absolute; top: 10px; right: 10px; width: 20px; height: 20px;">X</button>
+
 
   <script type="module" src="../JS/forgot.js"></script>
 </body>

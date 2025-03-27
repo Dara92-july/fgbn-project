@@ -28,7 +28,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore();
 
-// Helper: Display a custom popup message with an OK button
+
 function showPopup(message) {
   let popupContainer = document.getElementById("popupContainer");
   if (!popupContainer) {
@@ -75,13 +75,16 @@ const passwordInput = document.getElementById('password');
 const eyeIcon = document.getElementById('eyeIcon');
 const eyeSlashIcon = document.getElementById('eyeSlashIcon');
 const loaderContainer = document.getElementById("loader-container");
+const toggleSecurityCode = document.getElementById('toggleSecurityCode');
+const securityCodeInput = document.getElementById('securityCode');
+const eyeIconSecurityCode = document.getElementById('eyeIconSecurityCode');
+const eyeSlashIconSecurityCode = document.getElementById('eyeSlashIconSecurityCode');
 
-// Navigate back to sign-in page when the back button is clicked
+
 backButton.addEventListener('click', () => {
   window.location.href = 'signin.html';
 });
 
-// Toggle password visibility
 togglePassword.addEventListener('click', () => {
   const isPasswordHidden = passwordInput.getAttribute('type') === 'password';
 
@@ -99,11 +102,27 @@ togglePassword.addEventListener('click', () => {
   console.log(isPasswordHidden ? 'Password is hidden, showing eye icon' : 'Password is visible, showing eye-slash icon');
 });
 
+toggleSecurityCode.addEventListener('click', () => {
+  const isSecurityCodeHidden = securityCodeInput.getAttribute('type') === 'password';
+
+  if (isSecurityCodeHidden) {
+    securityCodeInput.setAttribute('type', 'text');
+    eyeIconSecurityCode.style.display = 'none';
+    eyeSlashIconSecurityCode.style.display = 'inline';
+  } else {
+    securityCodeInput.setAttribute('type', 'password');
+    eyeIconSecurityCode.style.display = 'inline';
+    eyeSlashIconSecurityCode.style.display = 'none';
+  }
+
+  console.log('Security code input type:', securityCodeInput.getAttribute('type'));
+  console.log(isSecurityCodeHidden ? 'Security code is hidden, showing eye icon' : 'Security code is visible, showing eye-slash icon');
+});
+
 createAccountForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   loaderContainer.style.display = 'block';
 
-  // Collect form data
   const formData = {
     firstName: document.getElementById('firstName').value.trim(),
     lastName: document.getElementById('lastName').value.trim(),
@@ -111,15 +130,23 @@ createAccountForm.addEventListener('submit', async (e) => {
     password: document.getElementById('password').value,
     dob: document.getElementById('dob').value,
     phone: document.getElementById('phone').value.trim(),
-    accountType: document.getElementById('accountType').value
+    accountType: document.getElementById('accountType').value,
+    securityCode: document.getElementById('securityCode').value.trim()  // Collect security code
   };
+
+  // Validate the security code (must be exactly 4 digits)
+  if (!/^\d{4}$/.test(formData.securityCode)) {
+    loaderContainer.style.display = 'none';
+    showPopup('Security code must be exactly 4 digits.');
+    return;
+  }
 
   try {
     // Create user and send verification email
     const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
     const user = userCredential.user;
     await sendEmailVerification(user);
-    
+
     showPopup('Verification email sent. Please check your inbox.');
 
     // Start verification polling
@@ -133,7 +160,7 @@ createAccountForm.addEventListener('submit', async (e) => {
           clearInterval(verificationCheckInterval);
           console.log("Email verified! Saving user data...");
 
-          // Save to Firestore
+          // Save to Firestore including the security code
           await setDoc(doc(db, 'users', user.uid), {
             ...formData,
             accountNumber: 'ACCT-' + (Math.floor(Math.random() * 90000) + 10000),

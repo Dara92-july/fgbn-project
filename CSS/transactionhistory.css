@@ -1,92 +1,89 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background: #f1f2f7;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  .create-account-container {
-    width: 90%;
-    max-width: 500px;
-    margin: 50px auto;
+/* Transaction Items */
+.transaction-item {
     background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .password-container {
-    position: relative;
-  }
-  .password-container input{
-    border: none;
-  }
-  
-  .toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  .create-account-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #FF0000;
-  }
-  
-  #createAccountForm {
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     display: flex;
-    flex-direction: column;
-  }
-  
-  #createAccountForm label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  #createAccountForm input,
-  #createAccountForm select {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  #createAccountForm input:focus,
-  #createAccountForm select:focus {
-    outline: none;
-    border-color: #FF0000;
-  }
-
-  #createAccountForm button {
-    padding: 12px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #FF0000;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #createAccountForm label[for="togglePassword"] {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    font-weight: normal;
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #666;
   }
-   
-  .socket {
+  
+  .transaction-item.sent { border-left: 4px solid #e74c3c; }
+  .transaction-item.received { border-left: 4px solid #2ecc71; }
+  .transaction-item.deposit { border-left: 4px solid #3498db; }
+  
+  .amount {
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  
+  .amount.sent { color: #e74c3c; }
+  .amount.received { color: #2ecc71; }
+  .amount.deposit { color: #3498db; }
+  
+  /* Filters */
+  .transaction-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    cursor: pointer;
+  }
+  
+  .filter-btn.active {
+    background: #ff0000;
+    color: white;
+    border-color: #ff0000;
+  }
+  
+  /* Receipt Modal */
+  .receipt-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .receipt-content {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  /* Balance Display */
+  .balance-amount {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  .close-btn1 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+  /* From Uiverse.io by Nawsome */ 
+.socket {
     width: 200px;
     height: 200px;
     position: absolute;
@@ -420,36 +417,6 @@
   
     100% {
       background: #ee3030;
-    }
-  }
-  .input-group {
-    position: relative;
-  }
-  
-  #toggleSecurityCode {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .loader-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @media (max-width: 390px) {
-    .create-account-container {
-      padding: 20px;
-      margin: 20px;
     }
   }
   
