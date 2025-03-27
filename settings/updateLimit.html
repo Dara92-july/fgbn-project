@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limit Update</title>
+</head>
+<body>
+
+    <style>
+        
+        /* CSS Styling */
+.container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.9);
+}
+
+
+#updateLimitForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#updateLimitForm input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#updateLimitForm input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+#updateLimitForm button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#updateLimitForm button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message i {
+    margin-right: 5px;
+}
+
+#Buttontag{
+    text-decoration: none;
+    position: relative;
+    top: 10vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#Buttontag button a{
+    text-decoration: none;
+    color: white;
+}
+
+#Buttontag button{
+    width: 40vw;
+    height: 9vh;
+    font-size: 5vw;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    transition: 1s;
+}
+
+#Buttontag button:hover{
+    background: red;
+    transition: 1s;
+    color: white;
+    border: 1px solid red;
+}
+    </style>
+    
+
+    <div class="forAll">
+        <div class="container">
+            <div id="updateLimitForm">
+                <form action="">
+                    <input type="number" name="" id="update">
+                    <button>update limit</button>
+                </form>
+            </div>
+        </div>
+    
+        <div id="Buttontag">
+            <button><a href="more.html">GO BACK</a></button>
+        </div>
+    </div>
+
+    <script src="updateLimit.js"></script>
+
+</body>
+</html>

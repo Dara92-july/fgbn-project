@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Account</title>
+  <link rel="stylesheet" href="/settings/theme.css">
   <link rel="stylesheet" href="../CSS/createaccount.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Modak&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="create-account-container">
 
-    <button id="backButton" class="back-btn">x</button>
+    <button id="backButton" class="back-btn" style="position: absolute; top: 10px; right: 10px; width: 20px; height: 20px;">x</button>
 
     <h2>Welcome to FGBN Bank</h2>
     <form id="createAccountForm">
@@ -22,12 +26,13 @@
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-      
-      <label for="togglePassword">
-        <input type="checkbox" id="togglePassword"> Show Password
-      </label>
+      <div class="password-container">
+        <input type="password" placeholder="Password" id="password" required>
+        <span class="toggle-password" id="togglePassword">
+          <img id="eyeIcon" src="../iconimages/iconamoon--eye-thin.svg" alt="" style="display: inline;">
+          <img id="eyeSlashIcon" src="../iconimages/mynaui--eye-slash.svg" alt="" style="display: none;">
+        </span>
+      </div>
 
       <label for="dob">Date of Birth</label>
       <input type="date" id="dob" name="dob" required>
@@ -40,14 +45,217 @@
         <option value="current">Current Account</option>
         <option value="savings">Savings Account</option>
       </select>
-
+      <div class="form-group">
+        <label for="securityCode">Security Code (4 digits)</label>
+        <div class="input-group">
+          <input type="password" id="securityCode" name="securityCode" maxlength="4" pattern="\d{4}" required>
+          <span id="toggleSecurityCode" style="cursor: pointer;">
+            <img id="eyeIconSecurityCode" class="fas fa-eye" src="../iconimages/iconamoon--eye-thin.svg" alt="">
+            <img id="eyeSlashIconSecurityCode" class="fas fa-eye-slash" src="../iconimages/mynaui--eye-slash.svg" alt="" style="display: none;">
+          </span>
+        </div>
+      </div>
+      
       <button type="submit">Create Account</button>
     </form>
   </div>
 
-  <!-- Loader element -->
-  <div id="loader" class="loader" style="display: none;"></div>
+  <div id="loader-container" class="loader-container">
+    <div class="socket">
+      <div class="socket">
+        <div class="gel center-gel">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c1 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c2 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c3 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c4 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c5 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c6 r1">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        
+        <div class="gel c7 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        
+        <div class="gel c8 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c9 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c10 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c11 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c12 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c13 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c14 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c15 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c16 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c17 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c18 r2">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c19 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c20 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c21 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c22 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c23 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c24 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c25 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c26 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c28 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c29 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c30 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c31 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c32 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c33 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c34 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c35 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c36 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        <div class="gel c37 r3">
+          <div class="hex-brick h1"></div>
+          <div class="hex-brick h2"></div>
+          <div class="hex-brick h3"></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="../JS/createaccount.js"></script>
+  <script src="/settings/theme.js"></script>
 </body>
 </html>

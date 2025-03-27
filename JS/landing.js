@@ -1,9 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
 
-// Firebase config and initialization
+
 const firebaseConfig = {
   apiKey: "AIzaSyBhAicyUZ7HR3OeQpvFpwvfbrapjFrk6tE",
   authDomain: "fgbn-bank.firebaseapp.com",
@@ -20,9 +20,8 @@ const db = getFirestore();
 const analytics = getAnalytics(app);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const loader = document.getElementById('loader');
+  const loader = document.getElementById('loader-container');
   
-  // Show loader while loading user details
   if (loader) {
     loader.style.display = 'flex';
   }
@@ -42,13 +41,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const balanceElement = document.getElementById('balance');
         const toggleBalanceBtn = document.getElementById('toggleBalance');
         const toggleBalanceIcon = document.getElementById('toggleBalanceIcon');
+        
+        // Array of random greetings
+        const greetings = [
+          'Hello',
+          'Welcome back',
+          'Good to see you',
+          'Hi',
+          'Great to have you here', 
+          'Nice to see you again',
+          'Let\'s get started',
+          'It\'s great to have you back',
+          'Hope you\'re doing well',
+          'Hey'
+        ];
 
-        // Update UI with user data
-        welcomeMessage.textContent = `Hello, ${userData.firstName} ${userData.lastName}`;
+        // Function to get a random greeting
+        const getRandomGreeting = () => {
+          const randomIndex = Math.floor(Math.random() * greetings.length);
+          return greetings[randomIndex];
+        };
+
+        welcomeMessage.textContent = `${getRandomGreeting()}, ${userData.firstName}`;
         accountTypeElement.textContent = userData.accountType;
         balanceElement.textContent = `NGN ${userData.balance}`;
 
-        // Track balance visibility
         let balanceVisible = true;
         toggleBalanceBtn.addEventListener('click', () => {
           balanceVisible = !balanceVisible;
@@ -72,14 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        // When the profile icon is clicked, show loader then redirect to profile page
         accountHolderName.addEventListener('click', () => {
           if (loader) {
             loader.style.display = 'flex';
           }
           setTimeout(() => {
-            window.location.href = 'profile.html';
-          }, 1000); // 1 second delay
+            window.location.href = '../HTML/profile.html';
+          }, 1000);
         });
 
         // Deposit functionality
@@ -96,16 +112,66 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
 
-        depositSubmitBtn.addEventListener('click', async () => {
-          let depositAmount = parseFloat(depositAmountInput.value);
-          if (!isNaN(depositAmount) && depositAmount > 0) {
-            const newBalance = userData.balance + depositAmount;
-            await setDoc(userDocRef, { balance: newBalance }, { merge: true });
-            depositModal.style.display = 'none';
-          } else {
-            // Optionally show a custom toast here for invalid deposit amount
-          }
-        });
+// Function to show a popup or toast message
+function showPopup(message, isSuccess = true) {
+  const popup = document.createElement('div');
+  popup.className = 'popup-message';
+  popup.textContent = message;
+
+  // Apply success or error styling based on isSuccess flag
+  popup.style.backgroundColor = isSuccess ? 'green' : 'red';
+  popup.style.color = 'white';
+  popup.style.padding = '10px';
+  popup.style.position = 'fixed';
+  popup.style.bottom = '20px';
+  popup.style.left = '50%';
+  popup.style.transform = 'translateX(-50%)';
+  popup.style.borderRadius = '5px';
+  popup.style.zIndex = '1000';
+
+  document.body.appendChild(popup);
+  setTimeout(() => {
+    document.body.removeChild(popup);
+  }, 3000);
+}
+
+depositSubmitBtn.addEventListener('click', async () => {
+  let depositAmount = parseFloat(depositAmountInput.value);
+
+  if (!isNaN(depositAmount) && depositAmount > 0) {
+    try {
+      loader.style.display = 'flex'; 
+
+      const newBalance = userData.balance + depositAmount;
+      const transactionsCol = collection(db, 'users', user.uid, 'transactions');
+      const transactionRef = doc(transactionsCol);
+
+      await Promise.all([
+        setDoc(userDocRef, { balance: newBalance }, { merge: true }),
+        setDoc(transactionRef, {
+          type: 'deposit',
+          amount: depositAmount,
+          date: new Date().toISOString(),
+          balanceAfter: newBalance,
+          description: 'Account deposit'
+        })
+      ]);
+
+      loader.style.display = 'none';
+
+      showPopup('Deposit successful! Redirecting...', true);
+
+      depositModal.style.display = 'none';
+
+      setTimeout(() => {
+        window.location.href = './landing.html';
+      }, 5000); 
+    } catch (error) {
+      loader.style.display = 'none';
+      showPopup('Deposit failed: ' + error.message, false);
+    }
+  }
+});
 
         depositCancelBtn.addEventListener('click', () => {
           depositModal.style.display = 'none';
@@ -117,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("No such user data!");
       }
     } else {
-      window.location.href = 'signin.html';
+      window.location.href = '../HTML/signin.html';
     }
-    
+
     // Hide the loader after processing
     if (loader) {
       loader.style.display = 'none';
@@ -155,6 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
   moreDiv.addEventListener('click', (e) => {
     e.preventDefault();
     activateMore();
-    window.location.href = 'anotherPage.html';
+    window.location.href = "../settings/more.html";
   });
 });

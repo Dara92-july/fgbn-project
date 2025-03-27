@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
+
+  <link rel="stylesheet" href="/settings/theme.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Modak&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../CSS/profile.css">
   <script defer type="module" src="../JS/profile.js"></script>
 </head>
 <body>
-  <!-- Close button to go back to the Landing page -->
   <div class="close-button-container">
     <button id="closeButton" class="close-btn">x</button>
   </div>
   
   <div class="profile-container">
-    <!-- Profile picture container -->
     <div class="profile-picture-container">
-      <!-- Initially, the default icon is used. It will be replaced when a picture is chosen -->
       <img id="profilePicture" src="./iconimages/gg--profile.svg" alt="Profile Picture" style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover;">
-      <!-- Hidden file input for uploading a new picture -->
       <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
     </div>
     
@@ -33,16 +36,15 @@
     <p>Balance: <span id="balance"></span></p>
   </div>
   
-  <!-- Popup message (hidden by default) -->
   <div id="updatePopup" class="popup" style="display: none;">
     Profile updated successfully!
   </div>
   
   <script>
-    // When the "Close" button is clicked, navigate back to the Landing page
     document.getElementById('closeButton').addEventListener('click', () => {
-      window.location.href = 'landing.html';
+      window.location.href = '../landing.html';
     });
   </script>
+  <script src="/settings/theme.js"></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: black;
+}
+
+.dark-mode .dashboard-content1, .dark-mode .dashboard-content2, .dark-mode .dashboard-content3,
+.dark-mode .dashboard-content4, .dark-mode .dashboard-content5, .dark-mode .dashboard-content6, .dark-mode .account-info{
+    background: black;
+    color: white;
+}
+
+.dark-mode .landing-container2{
+    background: black;
+}
