@@ -221,6 +221,6 @@ depositSubmitBtn.addEventListener('click', async () => {
   moreDiv.addEventListener('click', (e) => {
     e.preventDefault();
     activateMore();
-    window.location.href = 'anotherPage.html';
+    window.location.href = "../settings/more.html";
   });
 });
