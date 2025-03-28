@@ -6,10 +6,25 @@
 
 body, html {
   height: 100%;
+  width: 100%;
+  font-size: 20px;
+  background-color: whitesmoke;
+}
+.header {
+  /* background: url(../iconimages/background.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
+  justify-content: space-evenly;
+  position: fixed;
+  background-color: #ff0000;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20vh;
+  z-index: 1000;
 }
 .plus-jakarta-sans-uniquifier {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -17,155 +32,274 @@ body, html {
   font-weight: weight;
   font-style: normal;
 }
-.container {
-  position: relative;
+.welcome {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100%;
-  max-width: 1200px; /* Restrict maximum width for large screens */
+  gap: 19em;
+  padding: 10px;
+  margin-bottom: 4em;
 }
 
-.sign-in-btn, .google-btn {
-  padding: 13px 70px;
+#welcomeMessage {
+  font-size: 20px;
   color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.sign-in-btn {
-  background-color: #FF0000;
-}
-
-.google-btn {
-  background-color: #1e6d38;
-  margin-top: 7px;
-}
-
-.sign-in-btn:hover {
-  background-color: #FF0000;
-}
-
-.sign-in-page {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-color: white;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 20px 20px 0 0;
-  padding: 40px 20px;
+.account-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  transform: translateY(100%);
-  transition: transform 0.5s ease;
-}
-
-.sign-in-page.show {
-  transform: translateY(0);
-}
-
-.form-group {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-.password-toggle {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
-
-.password-toggle input {
-  margin-right: 10px;
-}
-
-.forgot-password {
-  margin-top: 15px;
-  color: #3498db;
-  text-decoration: none;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
-/* Style for the cancel (X) button */
-.cancel-btn {
+  gap: 10px;
+  width: 90%;
+  height: auto;
+  background-color: white;
+  border-radius: 15px;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  padding: 10px;
+}
+.service-list {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px;
+  width: 100%;
 }
 
-.sincre {
+.addimg {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+  height: 130px;
+  width: 130px;
+  border-radius: 7px;
+  border: 1px solid rgb(242, 237, 237);
+}
+.landing-container2 {
+  display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 25vh;
+  padding-bottom: calc(8vh + 15px);
 }
 
-.sincre a {
-  text-decoration: none;
-  color: red;
+.dashboard-content1, 
+.dashboard-content2, 
+.dashboard-content3, 
+.dashboard-content4, 
+.dashboard-content5{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 95%;
+  margin: auto;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(242, 237, 237);
+  padding: 15px;
+}
+.start{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-content5 input{
+  height: 5vh;
+  border-radius: 5px;
+}
+.dashboard-content5 button{
+ height: 5vh; 
+ border: none;
+ border-radius: 5px;
+}
+.dashboard-content3, 
+.dashboard-content4 {
+  gap: 25px;
 }
 
-/* Splash Screen */
-#splash-screen {
+.dashboard-content3 button {
+  width: 250px;
+  background-color: #ff0000;
+  height: 5vh;
+  border: none;
+  border-radius: 5px;
+}
+.dashboard-content6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 95%;
+  height: 13vh;
+  margin: auto;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(242, 237, 237);
+  padding: 15px;
+}
+.edit, .plus{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.landing-container2 > *:last-child {
+  margin-bottom: 15px;
+}
+.continue{
+  background-color: #ff0000;
+}
+.balance, .acctype {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.add-money, .transfer, .transaction-history, .tv-sub, .data, .airtime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 150px;
+  height: 150px;
+}
+
+.toggle-balance-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 8px;
+  outline: none;
+}
+
+.toggle-balance-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.toggle-balance-btn:hover img {
+  transform: scale(1.1);
+}
+
+.modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 9999;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
-.logo img {
-  width: 200px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.password-container {
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
   position: relative;
-  margin-bottom: 20px;
-  width: 100%;
 }
 
-.toggle-password {
+
+.bill {
+  display: flex;
+  gap: 200px;
+  padding-top: 15px;
+}
+
+.modal-close {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
   cursor: pointer;
 }
-/* From Uiverse.io by Nawsome */ 
+
+#depositAmount {
+  width: 80%;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #a30101;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+.home,
+.more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: white;
+  z-index: 1000;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.loader-container{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
 .socket {
   width: 200px;
   height: 200px;
@@ -502,70 +636,71 @@ body, html {
     background: #ee3030;
   }
 }
+
 @media (max-width: 430px) {
-  .container {
-    padding: 15px;
-    width: 100%;
-    height: 100vh;
+  .welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3em;
+    padding: 10px;
   }
 
-  .sign-in-btn, .google-btn {
-    padding: 12px 60px;
-    font-size: 17px;
-  }
-
-  .form-group input {
-    padding: 12px;
-    font-size: 15px;
-  }
-
-  .forgot-password {
-    font-size: 15px;
-  }
-
-  .sign-in-page {
-    height: 50%;
-    padding: 35px 20px;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-  }
-
-  .sign-in-page.show {
-    transform: translateY(0); /* Move it fully to the top */
-  }
-
-  .toggle-password {
-    right: 7px;
-  }
-
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 600px;
-    padding: 30px;
-  }
-
-  .sign-in-btn, .google-btn {
-    padding: 15px 80px;
-    font-size: 20px;
-  }
-
-  .form-group input {
-    padding: 15px;
-    font-size: 18px;
-  }
-
-  .forgot-password {
+  #welcomeMessage {
     font-size: 16px;
   }
 
-  .sign-in-page {
-    padding: 40px 30px;
+  .addimg {
+    width: 90px;
+    height: 90px;
   }
 
-  .toggle-password {
-    right: 10px;
+  .landing-container2 {
+    gap: 10px;
   }
+
+  .dashboard-content5 input {
+    height: 4vh;
+    font-size: 14px;
+  }
+
+  .dashboard-content5 button {
+    height: 4vh;
+    font-size: 14px;
+  }
+
+  .dashboard-content3 button {
+    width: 150px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
 }
+
+
+/* Responsive CSS for larger screens */
+@media (min-width: 768px) {
+  .header {
+    height: 40vh;
+  }
+  #welcomeMessage {
+    font-size: 30px;
+  }
+  .account-info {
+    width: 400px;
+    height: 130px;
+    font-size: 18px;
+  }
+  .add-money, .transfer, .transaction-history, .tv-sub, .data, .airtime {
+    width: 180px;
+    height: 180px;
+  }
+  .modal-content {
+    max-width: 500px;
+  }
+  
+}
+
 
