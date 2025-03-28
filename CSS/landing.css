@@ -88,7 +88,7 @@ body, html {
 .dashboard-content2, 
 .dashboard-content3, 
 .dashboard-content4, 
-.dashboard-content5 {
+.dashboard-content5{
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -605,6 +605,9 @@ body, html {
   -webkit-animation-delay: .6s;
 }
 
+
+
+
 @keyframes pulse00 {
   0% {
     -webkit-transform: scale(1);
@@ -702,3 +705,5 @@ body, html {
     max-width: 500px;
   }
 }
+
+
