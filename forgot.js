@@ -68,7 +68,7 @@ function showPopup(message, callback = null) {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("resetPasswordButton").addEventListener("click", resetPassword);
   document.getElementById("closeButton").addEventListener("click", () => {
-    window.location.href = "./signin.html"; 
+    window.location.href = "./index.html"; 
   });
 });
 
@@ -85,7 +85,7 @@ function resetPassword() {
     .then(() => {
       // Show success message and redirect to sign-in page
       showPopup("Password reset email sent! Please check your inbox.", () => {
-        window.location.href = "./signin.html"; 
+        window.location.href = "./index.html"; 
       });
     })
     .catch((error) => {

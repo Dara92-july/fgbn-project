@@ -42,7 +42,7 @@ const userGreeting = document.getElementById("user-greeting");
 
 // Close page button
 closePageBtn.addEventListener("click", () => {
-  window.location.href = "../landing.html";
+  window.location.href = "./landing.html";
 });
 
 // Refresh button
@@ -480,6 +480,6 @@ onAuthStateChanged(auth, async (user) => {
       showToast("Error loading account data", false);
     }
   } else {
-    window.location.href = "../signin.html";
+    window.location.href = "./signin.html";
   }
 });

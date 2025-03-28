@@ -125,7 +125,7 @@ signInSubmit.addEventListener('click', async (e) => {
       // Save the user data in session storage
       sessionStorage.setItem('userData', JSON.stringify(userData));
 
-      window.location.href = '../landing.html';
+      window.location.href = './landing.html';
     } else {
       console.error('No such user in Firestore');
       showPopup('No user data found');
