@@ -82,7 +82,7 @@ const eyeSlashIconSecurityCode = document.getElementById('eyeSlashIconSecurityCo
 
 
 backButton.addEventListener('click', () => {
-  window.location.href = 'signin.html';
+  window.location.href = './index.html';
 });
 
 togglePassword.addEventListener('click', () => {
@@ -171,7 +171,7 @@ createAccountForm.addEventListener('submit', async (e) => {
           // Update UI and redirect
           loaderContainer.style.display = 'none';
           sessionStorage.setItem('userData', JSON.stringify({ ...formData, uid: user.uid }));
-          window.location.href = '../landing.html';
+          window.location.href = './landing.html';
         }
       } catch (error) {
         console.error("Verification check failed:", error);
