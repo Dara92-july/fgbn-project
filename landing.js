@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loader.style.display = 'flex';
           }
           setTimeout(() => {
-            window.location.href = '../HTML/profile.html';
+            window.location.href = './profile.html';
           }, 1000);
         });
 
@@ -183,7 +183,7 @@ depositSubmitBtn.addEventListener('click', async () => {
         console.log("No such user data!");
       }
     } else {
-      window.location.href = '../HTML/signin.html';
+      window.location.href = './index.html';
     }
 
     // Hide the loader after processing

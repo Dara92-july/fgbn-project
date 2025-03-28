@@ -43,7 +43,7 @@ const submitSecurityCode = document.getElementById("submitSecurityCode");
 const closeTransferPage = document.getElementById("closeTransferPage"); // Close button element
 
 closeTransferPage.addEventListener("click", () => {
-  window.location.href = "../landing.html"; // Redirect to the landing page
+  window.location.href = "./landing.html"; // Redirect to the landing page
 });
 
 function showToast(message, isSuccess) {
@@ -55,7 +55,7 @@ function showToast(message, isSuccess) {
   setTimeout(() => {
     toast.remove();
     if (isSuccess) {
-      window.location.href = "../landing.html";
+      window.location.href = "./landing.html";
     }
   }, 3000);
 }
