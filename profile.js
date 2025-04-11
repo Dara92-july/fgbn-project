@@ -19,7 +19,7 @@ const db = getFirestore(app);
 let currentUser = null;
 let unsubscribeAuth = null;
 
-// Authentication state handler
+
 unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = 'index.html';
@@ -28,7 +28,7 @@ unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
 
   currentUser = user;
   
-  // DOM ready check with fallback
+  
   const domReadyHandler = () => {
     if (checkRequiredElements()) {
       initializeProfilePage();
@@ -64,7 +64,6 @@ function checkRequiredElements() {
 }
 
 function initializeProfilePage() {
-  // DOM elements
   const elements = {
     profilePicture: document.getElementById("profilePicture"),
     profileDropdown: document.getElementById("profileDropdown"),
@@ -81,7 +80,6 @@ function initializeProfilePage() {
     closeFullImage: document.getElementById("closeFullImage")
   };
 
-  // Event listeners
   elements.profilePicture.addEventListener("click", () => {
     elements.profileDropdown.classList.toggle("show");
   });
