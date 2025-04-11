@@ -7,61 +7,82 @@
 body, html {
   height: 100%;
   width: 100%;
-  font-size: 20px;
   background-color: whitesmoke;
 }
+html{
+  font-size: 16px;
+}
+
+body {
+  font-size: 1.25rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
 .header {
-  /* background: url(../iconimages/background.webp);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   position: fixed;
-  background-color: #ff0000;
   top: 0;
   left: 0;
   right: 0;
-  height: 20vh;
+  height: 24vh;
+  overflow: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  background-color: #ff0000;
 }
 .plus-jakarta-sans-uniquifier {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: weight;
+  font-weight: 400;
   font-style: normal;
 }
-.welcome {
-  display: flex;
-  align-items: center;
-  gap: 19em;
-  padding: 10px;
-  margin-bottom: 4em;
-}
-
-#welcomeMessage {
-  font-size: 20px;
-  color: white;
-}
-
-.account-info {
+/* Header Container */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 23vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 90%;
-  height: auto;
-  background-color: white;
-  border-radius: 15px;
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1001;
-  padding: 10px;
+  gap: 15px; 
+  padding: 20px 0;
+  background-color: #ff0000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1000;
+  width: 100%;
 }
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 0 10px;
+}
+
+
+.account-info {
+  width: 90%;
+  background-color: white;
+  border-radius: 7px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0 auto;
+}
+#welcomeMessage {
+  color: white;
+}
+
 .service-list {
   display: flex;
   align-items: center;
@@ -82,12 +103,32 @@ body, html {
   border: 1px solid rgb(242, 237, 237);
 }
 .landing-container2 {
+  margin-top: calc(24vh + 15px);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 25vh;
-  padding-bottom: calc(8vh + 15px);
+  padding-bottom: 10vh;
 }
+h1 {
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem; 
+}
+
+p {
+  font-size: 1rem;
+}
+
 
 .dashboard-content1, 
 .dashboard-content2, 
@@ -162,7 +203,7 @@ body, html {
 .balance, .acctype {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .add-money, .transfer, .transaction-history, .tv-sub, .data, .airtime {
@@ -262,7 +303,10 @@ body, html {
 .cancel-btn:hover {
   background-color: #5a6268;
 }
-
+.landing-container2 button{
+  color: white;
+  font-size: 1.2rem;
+}
 .home,
 .more {
   display: flex;
@@ -286,19 +330,6 @@ body, html {
 
 .footer a {
   text-decoration: none;
-}
-
-.loader-container{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
 }
 .socket {
   width: 200px;
@@ -637,70 +668,58 @@ body, html {
   }
 }
 
-@media (max-width: 430px) {
-  .welcome {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3em;
+@media (max-width: 480px) {
+  .dashboard-content1,
+  .dashboard-content2,
+  .dashboard-content3,
+  .dashboard-content4,
+  .dashboard-content5,
+  .dashboard-content6,
+  .account-info {
+    width: 100%;
     padding: 10px;
   }
 
-  #welcomeMessage {
-    font-size: 16px;
+  .add-money, .transfer, .transaction-history, .tv-sub, .data, .airtime {
+    width: 100px;
+    height: 100px;
   }
 
-  .addimg {
-    width: 90px;
-    height: 90px;
-  }
-
-  .landing-container2 {
+  .service-list {
     gap: 10px;
   }
 
-  .dashboard-content5 input {
-    height: 4vh;
-    font-size: 14px;
-  }
-
-  .dashboard-content5 button {
-    height: 4vh;
-    font-size: 14px;
-  }
-
   .dashboard-content3 button {
-    width: 150px;
+    width: 100%;
   }
-
-  .modal-content {
-    width: 95%;
-  }
-
 }
 
 
-/* Responsive CSS for larger screens */
-@media (min-width: 768px) {
-  .header {
-    height: 40vh;
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
   }
-  #welcomeMessage {
-    font-size: 30px;
+
+  .welcome {
+    gap: 1em;
+    text-align: center;
+    gap: 1em;
+    justify-content: space-between;
   }
+  #accountHolderName {
+    width: 40px;
+    height: 40px;
+  }
+
   .account-info {
-    width: 400px;
-    height: 130px;
-    font-size: 18px;
+    width: 95%;
+    padding: 15px;
   }
-  .add-money, .transfer, .transaction-history, .tv-sub, .data, .airtime {
-    width: 180px;
-    height: 180px;
+
+  .addimg {
+    width: 100px;
+    height: 100px;
   }
-  .modal-content {
-    max-width: 500px;
-  }
-  
 }
 
 

@@ -42,21 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleBalanceBtn = document.getElementById('toggleBalance');
         const toggleBalanceIcon = document.getElementById('toggleBalanceIcon');
         
-        // Array of random greetings
+
         const greetings = [
           'Hello',
           'Welcome back',
           'Good to see you',
           'Hi',
-          'Great to have you here', 
-          'Nice to see you again',
+          ' Welcome to FGBN', 
+          'Nice to see you',
           'Let\'s get started',
-          'It\'s great to have you back',
-          'Hope you\'re doing well',
+          'Good day',
+          'Hello again',
           'Hey'
         ];
 
-        // Function to get a random greeting
         const getRandomGreeting = () => {
           const randomIndex = Math.floor(Math.random() * greetings.length);
           return greetings[randomIndex];
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        // Real-time listener for balance updates
+      
         onSnapshot(userDocRef, (docSnap) => {
           if (docSnap.exists()) {
             const updatedData = docSnap.data();
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 1000);
         });
 
-        // Deposit functionality
         const addMoneyDiv = document.querySelector('.add-money');
         const depositModal = document.getElementById('depositModal');
         const depositAmountInput = document.getElementById('depositAmount');
@@ -112,13 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
 
-// Function to show a popup or toast message
 function showPopup(message, isSuccess = true) {
   const popup = document.createElement('div');
   popup.className = 'popup-message';
   popup.textContent = message;
 
-  // Apply success or error styling based on isSuccess flag
   popup.style.backgroundColor = isSuccess ? 'green' : 'red';
   popup.style.color = 'white';
   popup.style.padding = '10px';
@@ -186,13 +182,11 @@ depositSubmitBtn.addEventListener('click', async () => {
       window.location.href = './index.html';
     }
 
-    // Hide the loader after processing
     if (loader) {
       loader.style.display = 'none';
     }
   });
 
-  // Navigation for Home/More, etc.
   const homeDiv = document.querySelector('.home');
   const moreDiv = document.querySelector('.more');
   
