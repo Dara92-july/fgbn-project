@@ -17,3 +17,7 @@ body.dark-mode {
 .dark-mode .landing-container2{
     background: black;
 }
+
+.dark-mode .header{
+    background: black;
+}
