@@ -20,6 +20,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore();
 
+// Splash screen logic
 window.addEventListener('load', () => {
   const splashDuration = 3000;
 
@@ -34,7 +35,6 @@ window.addEventListener('load', () => {
  * @param {string} message - The message to display in the pop-up.
  */
 function showPopup(message) {
-
   let popupContainer = document.getElementById("popupContainer");
   if (!popupContainer) {
     popupContainer = document.createElement("div");
@@ -48,7 +48,7 @@ function showPopup(message) {
     popupContainer.style.display = "flex";
     popupContainer.style.justifyContent = "center";
     popupContainer.style.alignItems = "center";
-    popupContainer.style.zIndex = "1000";
+    popupContainer.style.zIndex = "2000";
     document.body.appendChild(popupContainer);
   }
   
@@ -63,7 +63,6 @@ function showPopup(message) {
   
   popupContainer.innerHTML = "";
   popupContainer.appendChild(popupBox);
-  
   
   document.getElementById("popupOkButton").addEventListener("click", () => {
     popupContainer.style.display = "none";
@@ -82,14 +81,16 @@ const signInSubmit = document.getElementById('signInSubmit');
 const eyeIcon = document.getElementById('eyeIcon');
 const eyeSlashIcon = document.getElementById('eyeSlashIcon');
 
+// --- Toggle Sign In Page ---
 signInButton.addEventListener('click', () => {
-  signInPage.classList.add('show');
+  signInPage.classList.add('active');  // use "active" (matches CSS)
 });
 
 cancelButton.addEventListener('click', () => {
-  signInPage.classList.remove('show');
+  signInPage.classList.remove('active');
 });
 
+// --- Toggle password visibility ---
 togglePassword.addEventListener('click', () => {
   const isPasswordHidden = passwordInput.getAttribute('type') === 'password';
 
@@ -102,15 +103,18 @@ togglePassword.addEventListener('click', () => {
     eyeIcon.style.display = 'inline';
     eyeSlashIcon.style.display = 'none';
   }
-
-  console.log('Password input type:', passwordInput.getAttribute('type'));
-  console.log(isPasswordHidden ? 'Password is hidden, showing eye icon' : 'Password is visible, showing eye-slash icon');
 });
 
+// --- Sign In with Firebase ---
 signInSubmit.addEventListener('click', async (e) => {
   e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const email = document.getElementById('email').value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!email || !password) {
+    showPopup("Please enter both email and password");
+    return;
+  }
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
